@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:book_apps/models/book_list_response.dart';
-import 'package:book_apps/views/detail_book_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,8 +11,6 @@ class BookController extends ChangeNotifier{
   fetchBookApi() async {
     var url = Uri.parse('https://api.itbook.store/1.0/new');
     var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
     if (response.statusCode == 200) {
       final jsonBookList = jsonDecode(response.body);
       bookList = BookListResponse.fromJson(jsonBookList);
@@ -44,7 +40,7 @@ class BookController extends ChangeNotifier{
   BookListResponse? similiarBooks;
   fetchSimiliarBookApi(String title) async {
     // print(widget.isbn);
-    var url = Uri.parse('https://api.itbook.store/1.0/search/${title}');
+    var url = Uri.parse('https://api.itbook.store/1.0/search/$title');
     var response = await http.get(url);
     // print('Response status: ${response.statusCode}');
     // print('Response body: ${response.body}');

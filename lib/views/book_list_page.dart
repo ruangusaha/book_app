@@ -1,11 +1,7 @@
-import 'dart:async';
-import 'dart:convert';
 
 import 'package:book_apps/controllers/book_controller.dart';
-import 'package:book_apps/models/book_list_response.dart';
 import 'package:book_apps/views/detail_book_page.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 class BookListPage extends StatefulWidget {
@@ -34,10 +30,10 @@ class _BookListPageState extends State<BookListPage> {
         title: const Text("Katalog Buku"),
       ),
       body: Consumer<BookController>(
-        child: Center(child: CircularProgressIndicator()),
+        child: const Center(child: CircularProgressIndicator()),
         builder: (context, controlller, child) => Container(
           child: bookController!.bookList == null
-              ?  child
+              ? child
               : ListView.builder(
                   itemCount: bookController!.bookList!.books!.length,
                   itemBuilder: (context, index) {
